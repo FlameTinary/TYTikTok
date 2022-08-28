@@ -1,5 +1,5 @@
-import 'package:fijkplayer/fijkplayer.dart';
 import 'package:flutter/material.dart';
+import 'package:video_player/video_player.dart';
 
 class TYVideoPlayView extends StatefulWidget {
   const TYVideoPlayView({Key? key}) : super(key: key);
@@ -9,18 +9,25 @@ class TYVideoPlayView extends StatefulWidget {
 }
 
 class _TYVideoPlayViewState extends State<TYVideoPlayView> {
-  final FijkPlayer player = FijkPlayer();
+  late VideoPlayerController _controller;
 
   @override
   initState() {
     super.initState();
-    player.setDataSource('https://sample-videos.com/video123/flv/240/big_buck_bunny_240p_10mb.flv', autoPlay: true);
+    _controller = VideoPlayerController.network(
+        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4');
+    _controller.addListener(() {
+      setState(() {});
+    });
+    _controller.setLooping(true);
+    _controller.initialize().then((_) => setState(() {}));
+    _controller.play();
   }
 
   @override
   dispose() {
-    player.release();
     super.dispose();
+    _controller.dispose();
   }
 
   @override
@@ -28,9 +35,12 @@ class _TYVideoPlayViewState extends State<TYVideoPlayView> {
     return Container(
       constraints: const BoxConstraints.expand(),
       alignment: Alignment.center,
-      child: FijkView(
-        player: player,
-      ),
+      child: _controller.value.isInitialized
+          ? AspectRatio(
+              aspectRatio: _controller.value.aspectRatio,
+              child: VideoPlayer(_controller),
+            )
+          : Container(),
     );
   }
 }
