@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'Pages/root_page.dart';
+import 'package:tiktok_demo/Configs/route_config.dart';
 
 main() {
   runApp(const MyApp());
@@ -11,8 +10,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: TYRootPage(),
+    return MaterialApp(
+      initialRoute: TYRouteConfig.initialRoute,
+      routes: TYRouteConfig.routes,
     );
   }
 }

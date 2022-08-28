@@ -4,6 +4,9 @@ import '../Views/BottomNavBarViews/bottom_navbar.dart';
 import 'home_page.dart';
 
 class TYRootPage extends StatelessWidget {
+
+  static const routerName = "/";
+
   const TYRootPage({Key? key}) : super(key: key);
 
   @override
