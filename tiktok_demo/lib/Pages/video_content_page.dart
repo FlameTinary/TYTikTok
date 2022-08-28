@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tiktok_demo/Pages/video_iterm.dart';
+import 'package:tiktok_demo/Views/VideoViews/video_iterm.dart';
 
 class TYVideoContentPage extends StatelessWidget {
   const TYVideoContentPage({Key? key}) : super(key: key);
